@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reusable_widget/components/custom_textfield.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,47 +24,54 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  AnimationController? controller;
-  Animation<double>? animation;
-  @override
-  void initState() {
-    controller = AnimationController(
-        vsync: this, duration: const Duration(seconds: 120));
-    animation = Tween(begin: 0.0, end: 1.0).animate(controller!);
-    controller!.forward();
-    controller!.addListener(() => setState(() {}));
-    super.initState();
-  }
-
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Material(
+            elevation: 4,
+            borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(25),
+                bottomRight: Radius.circular(25)),
+            child: Container(
+              height: 200,
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(25),
+                      bottomRight: Radius.circular(25))),
+            ),
+          ),
+          const SizedBox(height: 50),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              width: double.infinity,
-              height: 35,
-              decoration: BoxDecoration(
-                  color: const Color(0xff3f4768),
-                  border: Border.all(color: const Color(0xff3f4768), width: 3),
-                  borderRadius: BorderRadius.circular(50)),
-              child: Stack(
-                children: [
-                  LayoutBuilder(
-                    builder: (context, constraints) => Container(
-                        width: constraints.maxWidth * animation!.value,
-                        decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(50))),
-                  ),
-                ],
-              ),
+            child: Row(
+              children: [
+                Expanded(
+                    child: SizedBox(
+                        height: 120,
+                        width: 120,
+                        child: CustomTextfield(
+                          textStyle: TextStyle(fontSize: 18),
+                          onChanged: (value) {
+                            if (value.length == 1) {}
+                          },
+                        ))),
+                Expanded(
+                    child: SizedBox(
+                        height: 120, width: 120, child: CustomTextfield())),
+                Expanded(
+                    child: SizedBox(
+                        height: 120, width: 120, child: CustomTextfield())),
+                Expanded(
+                    child: SizedBox(
+                        height: 120, width: 120, child: CustomTextfield())),
+              ],
             ),
-          )
+          ),
+          const SizedBox(height: 50),
         ],
       ),
     );
