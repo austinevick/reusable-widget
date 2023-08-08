@@ -12,8 +12,9 @@ class CustomButton extends StatelessWidget {
   final BorderSide? borderSide;
   final double? radius;
   final double? textSize;
+  final FontWeight? fontWeight;
   final bool isLoading;
-  final BorderRadius? borderRadius;
+
   const CustomButton(
       {Key? key,
       this.onPressed,
@@ -26,9 +27,9 @@ class CustomButton extends StatelessWidget {
       this.gradient = const [Colors.transparent, Colors.transparent],
       this.borderSide,
       this.radius = 50,
-      this.borderRadius,
       this.isLoading = false,
-      this.textSize})
+      this.textSize,
+      this.fontWeight})
       : super(key: key);
 
   @override
@@ -41,21 +42,21 @@ class CustomButton extends StatelessWidget {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 650),
           decoration: BoxDecoration(
-              borderRadius: borderRadius ?? BorderRadius.circular(radius!),
+              borderRadius: BorderRadius.circular(radius!),
               gradient: LinearGradient(colors: gradient!)),
           child: MaterialButton(
             elevation: 0,
             onPressed: onPressed,
             color: color,
             shape: OutlineInputBorder(
-                borderRadius: borderRadius ?? BorderRadius.circular(radius!),
+                borderRadius: BorderRadius.circular(radius!),
                 borderSide: borderSide ?? BorderSide.none),
             child: child ??
                 Text(text!,
                     style: TextStyle(
                         color: textColor ?? Colors.white,
                         fontSize: textSize ?? 17,
-                        fontWeight: FontWeight.w600)),
+                        fontWeight: fontWeight ?? FontWeight.w600)),
           ),
         ),
       ),

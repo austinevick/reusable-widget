@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../common/utils.dart';
-
 class CustomIconButton extends StatelessWidget {
   final String? image;
   final IconData? icon;
   final VoidCallback? onPressed;
-  const CustomIconButton({super.key, this.image, this.icon, this.onPressed});
+
+  const CustomIconButton({Key? key, this.image, this.icon, this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class CustomIconButton extends StatelessWidget {
         onPressed: onPressed,
         icon: CircleAvatar(
           radius: 22,
-          backgroundColor: iconColor,
+          backgroundColor: Colors.blue,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: icon != null
