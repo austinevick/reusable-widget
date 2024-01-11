@@ -35,9 +35,9 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
-      ignoring: isLoading ? true : false,
+      ignoring: isLoading ? true : false, //Disable button on loading state
       child: SizedBox(
-        height: height ?? 60,
+        height: height,
         width: width,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 650),
