@@ -8,7 +8,7 @@ class CustomButton extends StatelessWidget {
   final double? width;
   final double? height;
   final Color? textColor;
-  final List<Color>? gradient;
+  final LinearGradient? gradient;
   final BorderSide? borderSide;
   final double? radius;
   final double? textSize;
@@ -36,14 +36,13 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IgnorePointer(
       ignoring: isLoading ? true : false, //Disable button on loading state
-      child: SizedBox(
-        height: height,
-        width: width,
         child: AnimatedContainer(
+          height: height,
+        width: width,
           duration: const Duration(milliseconds: 650),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(radius!),
-              gradient: LinearGradient(colors: gradient!)),
+              gradient: gradient,
           child: MaterialButton(
             elevation: 0,
             onPressed: onPressed,
@@ -55,11 +54,10 @@ class CustomButton extends StatelessWidget {
                 Text(text!,
                     style: TextStyle(
                         color: textColor ?? Colors.white,
-                        fontSize: textSize ?? 17,
+                        fontSize: textSize ?? 16,
                         fontWeight: fontWeight ?? FontWeight.w600)),
           ),
         ),
-      ),
     );
   }
 }
